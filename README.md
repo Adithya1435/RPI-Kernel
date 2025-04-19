@@ -46,7 +46,6 @@ mrs r0, cpsr
 bic r1, r0, #0x1F
 orr r1, r1, #0x13
 msr cpsr_c, r1
-
 ```
 
 - Send the string "Hello World" to the serial monitor using the UART0 peripheral via memory-mapped I/O
@@ -89,7 +88,6 @@ void switch_to_user_mode (void){
     );
 
 }
-
 ```
 - Ensure that direct access to the UART peripheral is disallowed from EL0. Attempts to call printf() from EL0 should result in a controlled failure or exception
 
@@ -100,7 +98,6 @@ void umain() {
     printk("It should not print this and instead triggers exception");
 
 }
-
 ```
 Here the exception is not exiting properly, that is why it is looping indefinitely (Have to FIX it!)
 
@@ -120,7 +117,6 @@ void umain() {
     syscall_printk("Print from user_space using syscall!\n");
 
 }
-
 ```
 
 ![syscall](assets/syscall.png)
